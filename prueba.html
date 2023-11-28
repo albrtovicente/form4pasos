@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cuatro Pasos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: auto;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .results {
+            display: none;
+            margin-top: 20px;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="form" onsubmit="showResults(); return false;">
+        <div class="form-step active" id="step1">
+            <!-- Paso 1 -->
+            <h2>Registro</h2>
+            <label for="step1_input">Nombre:</label>
+            <input type="text" id="step1_input" name="step1_input" required>
+            <button type="button" onclick="nextStep('step1', 'step2')">Siguiente</button>
+        </div>
+
+        <div class="form-step" id="step2">
+            <!-- Paso 2 -->
+            <h2>Registro</h2>
+            <label for="step2_input">Apellidos:</label>
+            <input type="text" id="step2_input" name="step2_input" required>
+            <button type="button" onclick="prevStep('step2', 'step1')">Anterior</button>
+            <button type="button" onclick="nextStep('step2', 'step3')">Siguiente</button>
+        </div>
+
+        <div class="form-step" id="step3">
+            <!-- Paso 3 -->
+            <h2>Registro</h2>
+            <label for="step3_input">telefono:</label>
+            <input type="text" id="step3_input" name="step3_input" required>
+            <button type="button" onclick="prevStep('step3', 'step2')">Anterior</button>
+            <button type="button" onclick="nextStep('step3', 'step4')">Siguiente</button>
+        </div>
+
+        <div class="form-step" id="step4">
+            <!-- Paso 4 -->
+            <h2>Registro</h2>
+            <label for="step4_input">contraseña:</label>
+            <input type="text" id="step4_input" name="step4_input" required>
+            <button type="button" onclick="prevStep('step4', 'step3')">Anterior</button>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+    <!-- Sección de resultados -->
+    <div class="results" id="results">
+        <h2>Resultados:</h2>
+        <p id="result_step1"></p>
+        <p id="result_step2"></p>
+        <p id="result_step3"></p>
+        <p id="result_step4"></p>
+    </div>
+</div>
+
+<script>
+    function nextStep(currentStep, nextStep) {
+        document.getElementById(currentStep).classList.remove('active');
+        document.getElementById(nextStep).classList.add('active');
+    }
+
+    function prevStep(currentStep, prevStep) {
+        document.getElementById(currentStep).classList.remove('active');
+        document.getElementById(prevStep).classList.add('active');
+    }
+
+    function showResults() {
+        // Obtener los valores de cada paso
+        var result_step1 = document.getElementById('step1_input').value;
+        var result_step2 = document.getElementById('step2_input').value;
+        var result_step3 = document.getElementById('step3_input').value;
+        var result_step4 = document.getElementById('step4_input').value;
+
+        // Mostrar los resultados
+        document.getElementById('result_step1').innerText = 'Paso 1: ' + result_step1;
+        document.getElementById('result_step2').innerText = 'Paso 2: ' + result_step2;
+        document.getElementById('result_step3').innerText = 'Paso 3: ' + result_step3;
+        document.getElementById('result_step4').innerText = 'Paso 4: ' + result_step4;
+
+        // Ocultar el formulario y mostrar los resultados
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

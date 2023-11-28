@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cuatro Pasos</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+<div class="form-container">
+  <form id="form">
+    <div class="form-step active" id="step1">
+        <!-- Paso 1 -->
+        <h2>Registro</h2>
+        <label for="step1_input">Nombre:</label>
+        <input type="text" id="step1_input" name="step1_input" required>
+        <button type="button" onclick="siguiente('step1', 'step2')">Siguiente</button>
+    </div>
+
+    <div class="form-step" id="step2">
+        <!-- Paso 2 -->
+        <h2>Registro</h2>
+        <label for="step2_input">Apellidos:</label>
+        <input type="text" id="step2_input" name="step2_input" required>
+        <button type="button" onclick="anterior('step2', 'step1')">Anterior</button>
+        <button type="button" onclick="siguiente('step2', 'step3')">Siguiente</button>
+    </div>
+
+    <div class="form-step" id="step3">
+        <!-- Paso 3 -->
+        <h2>Registro</h2>
+        <label for="step3_input">telefono:</label>
+        <input type="text" id="step3_input" name="step3_input" required>
+        <button type="button" onclick="anterior('step3', 'step2')">Anterior</button>
+        <button type="button" onclick="siguiente('step3', 'step4')">Siguiente</button>
+    </div>
+
+    <div class="form-step" id="step4">
+        <!-- Paso 4 -->
+        <h2>Registro</h2>
+        <label for="step4_input">contraseña:</label>
+        <input type="text" id="step4_input" name="step4_input" required>
+        <button type="button" onclick="anterior('step4', 'step3')">Anterior</button>
+        <button type="submit" onclick="mostrar()">Enviar</button>
+    </div>
+  </form>
+
+    
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
